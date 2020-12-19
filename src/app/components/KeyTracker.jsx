@@ -91,6 +91,8 @@ export default class KeyTracker extends Component {
         registered.forEach(entry => {
             const { combo, callback } = entry;
 
+            // Don't bother checking the combos that
+            // aren't even the same length
             if (pressed.length < combo.length) {
                 return;
             }
@@ -107,13 +109,18 @@ export default class KeyTracker extends Component {
      */
     clearKeys = () => {
         this.setState({ 
-            pressed: [] 
+            pressed: []
         });
 
+        this.previousKey = '';
         this.removeClass('hidden');
     }
 
 
+    /**
+     * Setup a timer that hides the
+     * combo display after a few seconds
+     */
     hideTimer = () => {
         // Reset the timeout
         clearTimeout(this.hideTimeout);
@@ -121,7 +128,7 @@ export default class KeyTracker extends Component {
             this.addClass('hidden', () => {
                 setTimeout(this.clearKeys, 300);
             });
-        }, 4000);
+        }, 1000);
     }
 
 
@@ -132,6 +139,20 @@ export default class KeyTracker extends Component {
      * @param {number} idx 
      */
     createKey = (value, idx) => {
+        switch (value) {
+            case 'Control': value = 'Ctrl'; break;
+            case 'Escape': value = 'Esc'; break;
+            case 'CapsLock': value = 'Caps'; break;
+            case 'Delete': value = 'Del'; break;
+            case 'PageUp': value = '+Page'; break;
+            case 'PageDown': value = '-Page'; break;
+            case 'ArrowLeft': value = '←'; break;
+            case 'ArrowRight': value = '→'; break;
+            case 'ArrowUp': value = '↑'; break;
+            case 'ArrowDown': value = '↓'; break;
+            case 'AltGraph': value = 'AltGR'; break;
+        }
+
         return (
             <div className="key" key={ idx }>
                 { value }
