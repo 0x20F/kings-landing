@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Anime from 'react-anime';
+import _ from 'underscore';
 
 
 
@@ -9,7 +10,17 @@ export default class KeyTracker extends Component {
 
         this.state = {
             classes: ['tracker'],
-            pressed: []
+            pressed: [],
+            registered: [ // This should come in from props
+                { 
+                    combo: ['Shift', 'A', '1'],
+                    callback: () => window.location.href = 'https://github.com/0x20f'
+                },
+                { 
+                    combo: ['Shift', '!'],
+                    callback: () => window.location.href = 'https://github.com'
+                }
+            ]
         };
 
         this.previousKey = '';
@@ -36,13 +47,19 @@ export default class KeyTracker extends Component {
                 return {
                     pressed
                 }
-            }, this.hideTimer);
+            }, this.newKeyPressHandler);
 
             this.previousKey = key;
         });
     }
 
 
+    /**
+     * Add a new class to the wrapper element
+     * 
+     * @param {string} name 
+     * @param {callable} then 
+     */
     addClass = (name, then) => {
         let classes = this.state.classes;
         classes.push(name);
@@ -51,12 +68,43 @@ export default class KeyTracker extends Component {
     }
 
 
+    /**
+     * Remove a class from the wrapper element
+     * 
+     * @param {string} name 
+     */
     removeClass = (name) => {
         let classes = this.state.classes;
         this.setState({ classes: classes.filter(c => c !== name) });
     }
 
 
+    /**
+     * What to do once a new key press has 
+     * been registered
+     */
+    newKeyPressHandler = () => {
+        this.hideTimer();
+
+        const { registered, pressed } = this.state;
+
+        registered.forEach(entry => {
+            const { combo, callback } = entry;
+
+            if (pressed.length < combo.length) {
+                return;
+            }
+
+            if (_.isEqual(combo, pressed)) {
+                callback();
+            }
+        });
+    }
+
+
+    /**
+     * Remove all pressed key records
+     */
     clearKeys = () => {
         this.setState({ 
             pressed: [] 
@@ -93,6 +141,12 @@ export default class KeyTracker extends Component {
 
 
     render() {
+        const { disabled } = this.props;
+
+        if (disabled) {
+            return;
+        }
+
         const { pressed, classes } = this.state;
         const animeProps = {
             opacity: [0, 1],
