@@ -10,6 +10,7 @@ export default class KeyTracker extends Component {
 
         this.state = {
             classes: ['tracker'],
+            matched: false,
             pressed: [],
             shortcuts: props.shortcuts
         };
@@ -89,6 +90,7 @@ export default class KeyTracker extends Component {
             }
 
             if (_.isEqual(combo, pressed)) {
+                this.setState({ matched: true });
                 callback();
             }
         });
@@ -100,7 +102,8 @@ export default class KeyTracker extends Component {
      */
     clearKeys = () => {
         this.setState({ 
-            pressed: []
+            pressed: [],
+            matched: false
         });
 
         this.previousKey = '';
@@ -159,14 +162,20 @@ export default class KeyTracker extends Component {
             return;
         }
 
-        const { pressed, classes } = this.state;
+        const { pressed, classes, matched } = this.state;
         const animeProps = {
             opacity: [0, 1],
             translateX: [14, 0]
         }
 
+        let c = classes;
+
+        if (matched) {
+            c.push('matched');
+        }
+
         return (
-            <div className={ classes.join(' ') }>
+            <div className={ c.join(' ') }>
                 { 
                     pressed.map((k, i) => {
                         let keyContainer = this.createKey(k, i);

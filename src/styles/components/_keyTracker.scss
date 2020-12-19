@@ -13,13 +13,19 @@
 
     &.hidden {
         opacity: 0;
+        left: 40%;
+    }
+
+    &.matched .key {
+        color: $white;
+        background-color: $red;
     }
 
     .key {
         width: 60px;
         height: 60px;
         margin-right: 10px;
-        transition: all .5s;
+        transition: all .2s;
 
         font-family: Poppins;
         font-size: 16px;
@@ -28,7 +34,7 @@
         @include flex();
 
         color: $white;
-        background-color: $red;
+        background-color: $dark-grey;
 
         &:last-child {
             margin-right: 0;
