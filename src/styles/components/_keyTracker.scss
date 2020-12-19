@@ -23,13 +23,12 @@
 
         font-family: Poppins;
         font-size: 16px;
-        border-radius: 3px;
+        border-radius: 2px;
 
         @include flex();
 
-        color: $dark-grey;
-        background-color: $grey;
-        opacity: 0.6;
+        color: $white;
+        background-color: $red;
 
         &:last-child {
             margin-right: 0;
