@@ -10,20 +10,34 @@ export default class KeyTracker extends Component {
         this.state = {
             pressed: []
         };
+
+        this.previousKey = '';
+        this.hideTimeout = null;
     }
 
     componentDidMount() {
         document.addEventListener('keydown', e => {
             const { key } = e;
 
+            // Don't repeat
+            if (key === this.previousKey) {
+                return;
+            }
+
             this.setState(prev => {
                 let pressed = prev.pressed;
                 pressed.push(key);
+
+                if (pressed.length > 3) {
+                    pressed.shift();
+                }
 
                 return {
                     pressed
                 }
             });
+
+            this.previousKey = key;
         });
     }
 
@@ -36,7 +50,7 @@ export default class KeyTracker extends Component {
      */
     createKey = (value, idx) => {
         return (
-            <div key={ idx }>
+            <div className="key" key={ idx }>
                 { value }
             </div>
         )
@@ -47,7 +61,7 @@ export default class KeyTracker extends Component {
         const { pressed } = this.state;
         const animeProps = {
             opacity: [0, 1],
-            translateY: [-64, 0]
+            translateY: [-24, 0]
         }
 
         return (
