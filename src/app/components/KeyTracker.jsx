@@ -162,7 +162,7 @@ export default class KeyTracker extends Component {
         const { pressed, classes } = this.state;
         const animeProps = {
             opacity: [0, 1],
-            translateY: [-24, 0]
+            translateX: [24, 0]
         }
 
         return (
