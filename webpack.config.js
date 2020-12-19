@@ -28,7 +28,7 @@ module.exports = (env, argv) => {
             extensions: ['.jsx', '.js', '.scss', '.html', '*'],
             alias: {
                 'components'  : path.resolve(__dirname, 'src/app/components'),
-                'pages'       : path.resolve(__dirname, 'src/app/pages'),
+                'views'       : path.resolve(__dirname, 'src/app/views'),
                 'foundation'  : path.resolve(__dirname, 'src/app/foundation'),
                 'support'     : path.resolve(__dirname, 'src/app/support'),
                 'styles'      : path.resolve(__dirname, 'src/styles'),

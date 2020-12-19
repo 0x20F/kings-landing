@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 
 import KeyTracker from 'components/KeyTracker';
 
+import BookmarkView from 'views/BookmarkView';
+
+
 
 export default class App extends Component {
     constructor(props) {
@@ -24,6 +27,7 @@ export default class App extends Component {
         return (
             <>
                 <KeyTracker shortcuts={ this.shortcuts }/>
+                <BookmarkView/>
             </>
         )
     }

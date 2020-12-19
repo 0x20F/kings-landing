@@ -10,7 +10,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: $white;
 }
 
 #root {
@@ -20,4 +19,22 @@ html, body {
     margin: 0;
 
     @include flex();
+}
+
+.content-section {
+    width: 100vw;
+    height: 100vh;
+    
+    @include flex();
+
+
+    .view-background {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+        z-index: -1;
+    }
 }
