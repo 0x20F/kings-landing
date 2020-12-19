@@ -11,16 +11,7 @@ export default class KeyTracker extends Component {
         this.state = {
             classes: ['tracker'],
             pressed: [],
-            registered: [ // This should come in from props
-                { 
-                    combo: ['Shift', 'A', '1'],
-                    callback: () => window.location.href = 'https://github.com/0x20f'
-                },
-                { 
-                    combo: ['Shift', '!'],
-                    callback: () => window.location.href = 'https://github.com'
-                }
-            ]
+            shortcuts: props.shortcuts
         };
 
         this.previousKey = '';
@@ -86,9 +77,9 @@ export default class KeyTracker extends Component {
     newKeyPressHandler = () => {
         this.hideTimer();
 
-        const { registered, pressed } = this.state;
+        const { shortcuts, pressed } = this.state;
 
-        registered.forEach(entry => {
+        shortcuts.forEach(entry => {
             const { combo, callback } = entry;
 
             // Don't bother checking the combos that
