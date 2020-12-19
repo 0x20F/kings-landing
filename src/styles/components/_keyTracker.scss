@@ -1,7 +1,7 @@
 .tracker {
     width: auto;
     height: 60px;
-    transition: all .5s;
+    transition: all .2s;
 
     // Stick it at the top of all other views
     position: absolute;
@@ -10,6 +10,10 @@
     transform: translate(-50%, 0);
 
     @include flex($justify: flex-start);
+
+    &.hidden {
+        top: -100px;
+    }
 
     .key {
         width: 60px;

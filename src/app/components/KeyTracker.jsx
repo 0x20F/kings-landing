@@ -8,6 +8,7 @@ export default class KeyTracker extends Component {
         super(props);
 
         this.state = {
+            classes: ['tracker'],
             pressed: []
         };
 
@@ -35,10 +36,44 @@ export default class KeyTracker extends Component {
                 return {
                     pressed
                 }
-            });
+            }, this.hideTimer);
 
             this.previousKey = key;
         });
+    }
+
+
+    addClass = (name, then) => {
+        let classes = this.state.classes;
+        classes.push(name);
+
+        this.setState({ classes }, then);
+    }
+
+
+    removeClass = (name) => {
+        let classes = this.state.classes;
+        this.setState({ classes: classes.filter(c => c !== name) });
+    }
+
+
+    clearKeys = () => {
+        this.setState({ 
+            pressed: [] 
+        });
+
+        this.removeClass('hidden');
+    }
+
+
+    hideTimer = () => {
+        // Reset the timeout
+        clearTimeout(this.hideTimeout);
+        this.hideTimeout = setTimeout(() => {
+            this.addClass('hidden', () => {
+                setTimeout(this.clearKeys, 300);
+            });
+        }, 4000);
     }
 
 
@@ -58,14 +93,14 @@ export default class KeyTracker extends Component {
 
 
     render() {
-        const { pressed } = this.state;
+        const { pressed, classes } = this.state;
         const animeProps = {
             opacity: [0, 1],
             translateY: [-24, 0]
         }
 
         return (
-            <div className="tracker">
+            <div className={ classes.join(' ') }>
                 { 
                     pressed.map((k, i) => {
                         let keyContainer = this.createKey(k, i);
