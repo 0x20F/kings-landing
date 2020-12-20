@@ -134,17 +134,17 @@ export default class KeyTracker extends Component {
      */
     createKey = (value, idx) => {
         switch (value) {
-            case 'Control': value = 'Ctrl'; break;
-            case 'Escape': value = 'Esc'; break;
-            case 'CapsLock': value = 'Caps'; break;
-            case 'Delete': value = 'Del'; break;
-            case 'PageUp': value = '+Page'; break;
-            case 'PageDown': value = '-Page'; break;
-            case 'ArrowLeft': value = '←'; break;
-            case 'ArrowRight': value = '→'; break;
-            case 'ArrowUp': value = '↑'; break;
-            case 'ArrowDown': value = '↓'; break;
-            case 'AltGraph': value = 'AltGR'; break;
+            case 'Control':     value = 'Ctrl'; break;
+            case 'Escape':      value = 'Esc'; break;
+            case 'CapsLock':    value = 'Caps'; break;
+            case 'Delete':      value = 'Del'; break;
+            case 'PageUp':      value = '+Page'; break;
+            case 'PageDown':    value = '-Page'; break;
+            case 'ArrowLeft':   value = '←'; break;
+            case 'ArrowRight':  value = '→'; break;
+            case 'ArrowUp':     value = '↑'; break;
+            case 'ArrowDown':   value = '↓'; break;
+            case 'AltGraph':    value = 'AltGR'; break;
         }
 
         return (
