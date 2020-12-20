@@ -3,6 +3,7 @@
 @import '~styles/misc/mixins';
 
 @import '~styles/components/keyTracker';
+@import '~styles/components/header';
 
 
 html, body {
@@ -10,6 +11,9 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    background-color: $white;
+    text-rendering: optimizeLegibility;
 }
 
 #root {
@@ -22,8 +26,10 @@ html, body {
 }
 
 .content-section {
-    width: 100vw;
+    width: 1280px;
     height: 100vh;
+    position: relative;
+    background-color: $white;
     
     @include flex();
 

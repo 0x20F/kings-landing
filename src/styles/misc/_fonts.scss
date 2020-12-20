@@ -2,5 +2,10 @@
 
 @font-face {
     font-family: "Tungsten";
-    src: url("~assets/fonts/Tungsten-Bold.ttf") format("ttf");
-  }
+    src: url("~assets/fonts/Tungsten-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DIN";
+    src: url("~assets/fonts/DIN.ttf") format("truetype");
+}

@@ -14,7 +14,10 @@ export default class BookmarkView extends Component {
             <section className="content-section">
                 <Background/>
 
-                <Header text="Bookmarks"/>
+                <Header 
+                    text="Bookmarks" 
+                    secondaryText="Choose"
+                    className="top left"/>
             </section>
         )
     }

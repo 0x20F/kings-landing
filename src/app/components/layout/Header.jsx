@@ -7,20 +7,31 @@ export default class Header extends Component {
     }
 
     render() {
-        const { text, classes } = this.props;
+        const { text, className, secondaryText } = this.props;
 
         let c = [];
+        let secondText = secondaryText;
 
-        if (classes) {
-            c = classes;
+        if (!secondaryText) {
+            secondText = text;
+        }
+
+        if (className) {
+            c = className.split(' ');
         }
 
         c.push('view-header');
 
+        let final = c.join(' ');
+
+        c.push('secondary');
+        let secondary = c.join(' ');
+
 
         return (
             <>
-                <header className={ c.join(' ') }>{ text }</header>
+                <header className={ final }>{ text }</header>
+                <header className={ secondary }>{ secondText }</header>
             </>
         )
     }

@@ -1,0 +1,43 @@
+.view-header {
+    font-family: "Tungsten";
+    font-size: 120px;
+    color: $dark-grey;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 1;
+
+    &.secondary {
+        font-family: DIN;
+        font-size: 280px;
+        color: $white;
+        z-index: 0;
+        max-width: 100%;
+
+        -webkit-text-stroke: 1px $dark-grey;
+        opacity: 0.08;
+
+        &.top {
+            top: 60px;
+        }
+
+        &.left {
+            left: -50px;
+        }
+    }
+
+
+    &.top {
+        top: 60px;
+
+        &.center {
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+    }
+
+    &.left {
+        left: 100px;
+    }
+}
